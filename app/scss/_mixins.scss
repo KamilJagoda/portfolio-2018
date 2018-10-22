@@ -47,6 +47,14 @@
 
 }
 
+@mixin center-vertical() {
+
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+
+}
+
 
 //Font Style: Family, Color, Weight, Style
 @mixin font($family: $primary-font, $color: $primary-color, $weight: 400, $style: normal) {

@@ -1,190 +1,152 @@
 .navbar {
 
-    border-radius: 0;
-    margin-bottom: 0;
-    position: relative;
-    z-index: 15;
-    padding: 0 15px;
+    .logo {
 
-    &-header {
+        margin: 25px auto;
+        max-width: 100px;
+        position: relative;
+        opacity: 0;
+        transition: opacity 1s ease-in, 0.3s ease-out;
 
-        .navbar-brand {
-
-            position: relative;
-            height: auto;
-            margin-top: 27px;
-            padding-bottom: 0;
-
-            @media(max-width: 1199px) {
-
-                margin-left: 0 !important;
-
-            }
-
-            @media(max-width: 991px) {
-
-                margin-top: 15px;
-
-            }
-
-            img {
-
-                cursor: pointer;
-
-            }
-
-        }
 
     }
 
-    &-collapse {
+    &__wrapper {
 
-        @media(max-width: 767px) {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        left: 0;
+        position: fixed;
+        top: 0;
+        height: 100%;
+        background: $prim-color;
+        padding: 10px;
+        width: 60px;
+        transition: width 0.5s ease-in-out;
 
-            position: absolute;
-            height: 0;
-            transition: padding, height 0.5s ease-in-out;
+        &--icon {
+
+            background: url("../img/logo.png") no-repeat center center;
+            width: 35px;
+            height: 40px;
             display: block;
-            width: 100%;
-            right: 0px;
-            top: -3px;
-            text-align: center;
-            background: #333;
-            z-index: -1;
-            padding: 0;
-            overflow: hidden;
+            background-size: 35px 40px;
+            @include center-abs;
+
 
         }
 
-        &.collapsed {
+        &--hide {
 
-            @media(max-width: 767px) {
+            display: none;
+            font-size: 30px;
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            cursor: pointer;
 
-                height: 556px !important;
+            i {
 
-            }
-
-        }
-
-    }
-
-    .navbar-nav {
-
-        @media(max-width: 1199px) {
-
-            margin-right: 0px;
-
-        }
-
-        @media(max-width: 767px) {
-
-            padding: 85px 0 0;
-            margin: 0;
-
-        }
-
-        li {
-
-            padding: 32px 0px;
-            margin-left: 65px;
-            margin-right: -10px;
-
-            @media(max-width: 991px) {
-
-                padding: 25px 0;
-                margin-left: 30px;
-                margin-right: 0px;
-
-            }
-
-            @media(max-width: 767px) {
-
-                margin-left: 0;
-                padding: 10px 0;
-
-            }
-
-            a {
-
-                @include rem-calc(18px);
-                font-family: $secondary-font;
-                color: $primary-color;
-                padding: 0 10px;
-
-                @media(max-width: 767px) {
-
-                    @include rem-calc(25px);
-                    padding: 15px 0;
-
-                }
-
-                &:hover, &:active, &:hover {
-
-                    background: transparent;
-                    @media(max-width: 767px) {
-
-                        background: $primary-color;
-                        color: $secondary-color;
-                        font-weight: 600;
-
-                    }
-
-                    &:after {
-
-                        height: 2px;
-                        opacity: 1;
-                        transform: translateY(5px);
-
-                        @media(max-width: 767px) {
-
-                            display: none;
-
-                        }
-
-                    }
-
-                }
-
-                &:after {
-
-                    position: absolute;
-                    top: 100%;
-                    left: 0;
-                    width: 100%;
-                    height: 1px;
-                    background: #fff;
-                    content: '';
-                    opacity: 0;
-                    transition: height 0.3s, opacity 0.3s, transform 0.3s;
-                    transform: translateY(-10px);
-
-                }
-
-            }
-
-        }
-
-    }
-
-    .navbar-toggle {
-
-        @media(max-width: 767px) {
-
-            margin-top: 30px;
-            margin-right: 5px;
-
-        }
-
-        .icon-bar {
-
-            @media(max-width: 767px) {
-
-                background: $primary-color;
                 cursor: pointer;
 
             }
 
         }
 
+        &.open {
+
+            width: 300px;
+
+            .navbar__wrapper--icon {
+
+                display: none;
+
+            }
+
+            .navbar__wrapper--hide {
+
+                display: inline-block;
+
+            }
+
+            .logo {
+
+                display: block;
+                opacity: 1;
+
+            }
+
+            .navigation {
+
+                display: block;
+                transform: translateX(0px);
+                width: 100%;
+
+            }
+
+            .copy {
+
+                display: block;
+                transform: translateX(0px);
+                width: 100%;
+
+            }
+
+        }
+
     }
+}
+
+.navigation {
+
+    @include center-vertical;
+    width: 0%;
+    overflow: hidden;
+    left: 0;
+    transform: translateX(-300px);
+    transition: transform 1s ease-out;
+
+    &--link {
+
+        text-align: center;
+        width: 60%;
+        margin: 0 auto;
+
+        a {
+
+            font-family: $secondary-font;
+            font-weight: 600;
+            @include rem-calc(20px);
+            color: #B0B2B3;
+            padding: 5px 0;
+            display: block;
+
+            &:hover {
+
+                background-color: #313133;
+                color: #fff;
+
+            }
+        }
+
+    }
+
+}
+
+.copy {
+
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 11px;
+    line-height: 1.5;
+    text-transform: uppercase;
+    width: auto;
+    overflow: hidden;
+    transform: translateX(-300px);
+    transition: transform 1s ease-out;
+
 }
